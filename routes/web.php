@@ -14,3 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/home', function () {
+    return view('home'); // resources/views/home.blade.php
+});
+
+// jika file didalam folder lagi
+Route::get('/inner', function () {
+    return view('blog.inner'); // resources/views/blog/inner.blade.php
+});
