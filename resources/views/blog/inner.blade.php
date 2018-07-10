@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    di dalam folder blog
+                    selamat datang <br> di dalam folder blog
                 </div>
             </div>
         </div>
