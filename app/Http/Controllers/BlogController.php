@@ -15,8 +15,9 @@ class BlogController extends Controller
     {
       $nilai = "id sama dengan $id";
       $users = ['fajrul', 'linxcodev', 'tiga'];
-      
+      $unescaped = "<b>unescaped</b>";
+
       return view('blog/home', ['blog' => $nilai,
-      'users' => $users]); // buat variable blog di views
+      'users' => $users, 'unescaped' => $unescaped]); // buat variable blog di views
     }
 }
