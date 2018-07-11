@@ -3,20 +3,9 @@
 @section('title', 'home')
 
 @section('content')
-  <h1>Selamat Datang di blog ini</h1>
-  <h2> {{ $blog }} </h2> {{-- echo $blog --}}
+  <h1>Selamat Datang di home blog</h1>
 
-  <ol type="1">
-    @foreach ($users as $user)
-      <li>{{ $user->username }}</li>
-    @endforeach
-  </ol>
-
-   {{-- {!! $unescaped !!} echo in html --}}
-
-  @if (count($users) > 5)
-    User lebih dari 5
-  @else
-    User tidak lebih dari 5
-  @endif
+  @foreach ($blogs as $blog)
+    <li> <a href="blog/{{ $blog->id }}">{{ $blog->title }}</a> </li>
+  @endforeach
 @endsection
