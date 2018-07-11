@@ -8,11 +8,11 @@
 
   <ol type="1">
     @foreach ($users as $user)
-        <li>{{ $user }}</li>
+      <li>{{ $user->username }}</li>
     @endforeach
   </ol>
 
-  {!! $unescaped !!} {{-- echo in html --}}<br><br>
+   {{-- {!! $unescaped !!} echo in html --}}
 
   @if (count($users) > 5)
     User lebih dari 5
