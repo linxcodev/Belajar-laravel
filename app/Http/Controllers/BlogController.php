@@ -34,15 +34,18 @@ class BlogController extends Controller
       // ]);
 
       // delete biasa
-      // $blog = Blog::find(6);
+      // $blog = Blog::find(3);
       // $blog->delete();
 
       // delete menggunakan destroy (otomatis mencari id)
       // Blog::destroy(5); single
       // Blog::destroy([4,2]);
 
+      // Blog::withTrashed()->restore(); restore soft delete
+      
       // menampilkan semua data
       $blog = Blog::all(); // select id all
+      // $blog = Blog::withTrashed()->get(); // show soft delete
 
       return view('blog/home', ['blogs' => $blog]);
     }
@@ -53,7 +56,8 @@ class BlogController extends Controller
       $blog = Blog::find($id); // mencari id
 
       if (!$blog)
-        dd("Id not found");
+        // dd("Id not found");
+        abort(404); // menampilkan halaman 404
 
       return view('blog/blog', ['blogs' => $blog]); // buat variable blog di views
     }
