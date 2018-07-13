@@ -15,5 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/blog', 'BlogController@index');
-Route::get('/blog/{id}', 'BlogController@show');
+Route::get('/blog', 'BlogController@index')->name('blog.index');
+Route::get('/blog/{id}', 'BlogController@show')->name('blog.show');
+Route::get('/blog/edit/{id}', 'BlogController@edit')->name('blog.edit');
+Route::put('/blog/{id}', 'BlogController@update');

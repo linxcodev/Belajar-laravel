@@ -4,10 +4,17 @@
 
 @section('content')
     <h1>Selamat datang di blog</h1>
-    
+
     <h2>{{ $blogs->title }}</h2>
     <hr>
     <p>
       {{ $blogs->description }}
     </p>
+
+    <button type="button" name="button">
+      <a href="{{ route('blog.edit', $blogs->id) }}">Edit</a>
+    </button>
+    <button type="button" name="button">
+      <a href="{{ route('blog.index') }}">back</a>
+    </button>
 @endsection

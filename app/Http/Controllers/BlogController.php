@@ -23,16 +23,6 @@ class BlogController extends Controller
       //   'description' => 'halo jg halo jg halo jg halo jg'
       // ]);
 
-      // update cara 1
-      // $blog = Blog::find(6);
-      // $blog->id = 10;
-      // $blog->save();
-
-      // ,mass update
-      // Blog::where('id', 10)->update([
-      //   'id' => 6
-      // ]);
-
       // delete biasa
       // $blog = Blog::find(3);
       // $blog->delete();
@@ -42,7 +32,7 @@ class BlogController extends Controller
       // Blog::destroy([4,2]);
 
       // Blog::withTrashed()->restore(); restore soft delete
-      
+
       // menampilkan semua data
       $blog = Blog::all(); // select id all
       // $blog = Blog::withTrashed()->get(); // show soft delete
@@ -55,10 +45,39 @@ class BlogController extends Controller
       // mnampilkan by id
       $blog = Blog::find($id); // mencari id
 
+      if (!$blog) {
+        // dd("Id not found");
+        abort(404); // menampilkan halaman 404
+      }
+
+      return view('blog/blog', ['blogs' => $blog]); // buat variable blog di views
+    }
+
+    public function edit($id)
+    {
+      $blog = Blog::find($id); // mencari id
+
       if (!$blog)
         // dd("Id not found");
         abort(404); // menampilkan halaman 404
 
-      return view('blog/blog', ['blogs' => $blog]); // buat variable blog di views
+      return view('blog/edit', ['blogs' => $blog]); // buat variable blog di views
+    }
+
+    public function update(Request $request, $id)
+    {
+      // update cara 1
+      // $blog = Blog::find(6);
+      // $blog->id = 10;
+      // $blog->save();
+
+      // ,mass update
+      Blog::where('id', $id)->update([
+        'title' => $request->title,
+        'description' => $request->description
+      ]);
+
+      $blog = Blog::find($id);
+      return view('blog.blog', ['blogs' => $blog]);
     }
 }
