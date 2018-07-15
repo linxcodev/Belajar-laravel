@@ -16,6 +16,15 @@ Route::get('/', function () {
 });
 
 Route::get('/blog', 'BlogController@index')->name('blog.index');
+Route::get('/blog/restore', 'BlogController@restore')->name('blog.restore');
+Route::get('/blog/fc/{id}', 'BlogController@fc')->name('blog.fc');
+
+Route::get('/blog/create', 'BlogController@create')->name('blog.create');
+Route::post('/blog/store', 'BlogController@store')->name('blog.store');
+
 Route::get('/blog/{id}', 'BlogController@show')->name('blog.show');
+
 Route::get('/blog/edit/{id}', 'BlogController@edit')->name('blog.edit');
 Route::put('/blog/{id}', 'BlogController@update');
+
+Route::delete('/blog/{id}', 'BlogController@destroy')->name('blog.destroy');

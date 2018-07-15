@@ -10,29 +10,6 @@ class BlogController extends Controller
 {
     public function index()
     {
-      // insert cara biasa
-      // $data = new Blog;
-      // $data->title = 'halo kendal';
-      // $data->description = 'halo halo kendal halo halo kendal halo halo kendal';
-      // $data->save();
-
-      // insert by mass assigment
-      // Blog::create([
-      //   'id' => 100,
-      //   'title' => 'halo jg',
-      //   'description' => 'halo jg halo jg halo jg halo jg'
-      // ]);
-
-      // delete biasa
-      // $blog = Blog::find(3);
-      // $blog->delete();
-
-      // delete menggunakan destroy (otomatis mencari id)
-      // Blog::destroy(5); single
-      // Blog::destroy([4,2]);
-
-      // Blog::withTrashed()->restore(); restore soft delete
-
       // menampilkan semua data
       $blog = Blog::all(); // select id all
       // $blog = Blog::withTrashed()->get(); // show soft delete
@@ -51,6 +28,59 @@ class BlogController extends Controller
       }
 
       return view('blog/blog', ['blogs' => $blog]); // buat variable blog di views
+    }
+
+    public function create()
+    {
+      return view('blog/create');
+    }
+
+    public function store(Request $request)
+    {
+      // insert cara biasa
+      // $data = new Blog;
+      // $data->title = 'halo kendal';
+      // $data->description = 'halo halo kendal halo halo kendal halo halo kendal';
+      // $data->save();
+
+      // insert by mass assigment
+      Blog::create([
+        'title' => $request->title,
+        'description' => $request->description
+      ]);
+
+      return redirect('blog'); // url
+    }
+
+    public function destroy($id)
+    {
+      // delete biasa
+      // $blog = Blog::find(3);
+      // $blog->delete();
+
+      if (!$id)
+        abort('404');
+
+      // delete menggunakan destroy (otomatis mencari id)
+      Blog::destroy($id); // single
+      // Blog::destroy([4,2]);
+
+      return redirect('blog');
+    }
+
+    public function restore()
+    {
+      Blog::withTrashed()->restore(); //restore soft delete
+
+      return redirect('blog');
+    }
+
+    public function fc($id)
+    {
+      $blog = Blog::find($id);
+      $blog->forceDelete();
+
+      return redirect('blog');
     }
 
     public function edit($id)

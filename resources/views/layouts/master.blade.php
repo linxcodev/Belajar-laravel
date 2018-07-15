@@ -3,6 +3,12 @@
   <head>
     <meta charset="utf-8">
     <title>@yield('title')</title>
+    <style media="screen">
+      a#btn {
+        color: black;
+        text-decoration: inherit;
+      }
+    </style>
   </head>
   <body>
     <header>

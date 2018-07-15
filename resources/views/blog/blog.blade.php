@@ -12,9 +12,9 @@
     </p>
 
     <button type="button" name="button">
-      <a href="{{ route('blog.edit', $blogs->id) }}">Edit</a>
+      <a id="btn" href="{{ route('blog.edit', $blogs->id) }}">Edit</a>
     </button>
     <button type="button" name="button">
-      <a href="{{ route('blog.index') }}">back</a>
+      <a id="btn" href="{{ route('blog.index') }}">back</a>
     </button>
 @endsection
