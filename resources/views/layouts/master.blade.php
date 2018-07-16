@@ -8,13 +8,15 @@
         color: black;
         text-decoration: inherit;
       }
+      strong {
+        color: red;
+      }
     </style>
   </head>
   <body>
     <header>
       <nav>
-        <a href="#">Home</a>
-        <a href="#">blog</a>
+        <a href={{ route('blog.index') }}>Home</a>
       </nav>
     </header>
 
