@@ -38,7 +38,7 @@ class BlogController extends Controller
     public function store(Request $request)
     {
       $request->validate([
-        'title' => 'required|min:5',
+        'title' => 'required|min:5|max:20',
         'description' => 'required|min:8'
       ]);
       // insert cara biasa
