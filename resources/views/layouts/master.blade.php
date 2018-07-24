@@ -3,15 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>@yield('title')</title>
-    <style media="screen">
-      a#btn {
-        color: black;
-        text-decoration: inherit;
-      }
-      strong {
-        color: red;
-      }
-    </style>
+    <link rel="stylesheet" href="/css/main.css">
   </head>
   <body>
     <header>
@@ -25,5 +17,7 @@
     <footer>
       <p>&copy; laravel linxcodev</p>
     </footer>
+
+    <script src="/js/main.js"></script>
   </body>
 </html>
