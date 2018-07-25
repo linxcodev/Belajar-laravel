@@ -25,4 +25,6 @@
       </button>
     </li>
   @endforeach
+
+  {{ $blogs->links() }}
 @endsection

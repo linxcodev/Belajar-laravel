@@ -11,7 +11,7 @@ class BlogController extends Controller
     public function index()
     {
       // menampilkan semua data
-      $blog = Blog::all(); // select id all
+      $blog = Blog::paginate(3); // select paginate 3 3
       // $blog = Blog::withTrashed()->get(); // show soft delete
 
       return view('blog/home', ['blogs' => $blog]);

@@ -6,3 +6,16 @@ a#btn {
 strong {
   color: red;
 }
+
+.pagination li {
+  display: inline-block;
+}
+
+.pagination li a {
+  color: black;
+  text-decoration: inherit;
+}
+
+.pagination .page-item.active {
+  border: 1px black solid;
+}
