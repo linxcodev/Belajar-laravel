@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
+use App\Mail\BlogPosted;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\Blog;
+use Illuminate\Support\Facades\Mail;
 
 class BlogController extends Controller
 {
@@ -41,17 +43,20 @@ class BlogController extends Controller
         'title' => 'required|min:5|max:20',
         'description' => 'required|min:8'
       ]);
-      // insert cara biasa
+      // insert cara biasa / tanpa menggunakan model
       // $data = new Blog;
       // $data->title = 'halo kendal';
       // $data->description = 'halo halo kendal halo halo kendal halo halo kendal';
       // $data->save();
 
       // insert by mass assigment
-      Blog::create([
+      $blog = Blog::create([
         'title' => $request->title,
         'description' => $request->description
       ]);
+
+      // mengirim email
+      Mail::to('test@emailuser.com')->send(new BlogPosted($blog));
 
       return redirect('blog'); // url
     }
