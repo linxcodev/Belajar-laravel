@@ -23,7 +23,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // tetap Regulat Expression Constrain id secara global
+        Route::pattern('id', '[0-9]+');
 
         parent::boot();
     }

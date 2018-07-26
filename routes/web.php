@@ -12,19 +12,26 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('blog.index');
 });
 
-Route::get('/blog', 'BlogController@index')->name('blog.index');
-Route::get('/blog/restore', 'BlogController@restore')->name('blog.restore');
-Route::get('/blog/fc/{id}', 'BlogController@fc')->name('blog.fc');
+Route::prefix('blog')->group(function () {
+  Route::match(['get', 'post'], '/testing', 'BlogController@testing')->name('test');
 
-Route::get('/blog/create', 'BlogController@create')->name('blog.create');
-Route::post('/blog/store', 'BlogController@store')->name('blog.store');
+  Route::get('/', 'BlogController@index')->name('blog.index');
+  Route::get('/restore', 'BlogController@restore')->name('blog.restore');
+  Route::get('/fc/{id}', 'BlogController@fc')->name('blog.fc');
 
-Route::get('/blog/{id}', 'BlogController@show')->name('blog.show');
+  Route::get('/create', 'BlogController@create')->name('blog.create');
+  Route::post('/store', 'BlogController@store')->name('blog.store');
 
-Route::get('/blog/edit/{id}', 'BlogController@edit')->name('blog.edit');
-Route::put('/blog/{id}', 'BlogController@update');
+  Route::get('/{id}', 'BlogController@show')->name('blog.show');
 
-Route::delete('/blog/{id}', 'BlogController@destroy')->name('blog.destroy');
+  Route::get('/edit/{id}', 'BlogController@edit')->name('blog.edit');
+  // Regulat Expression Constrain (digunakan untuk menetapkan suatu nilai
+  // parameter apakah bernilai int/varchar) ['id' => '[0-9]+', 'name' => '[a-z]+']
+  // untuk membuat ini menjadi global ke app/providres
+  Route::put('/{id}', 'BlogController@update')->where('id', '[0-9]+');
+
+  Route::delete('/{id}', 'BlogController@destroy')->name('blog.destroy');
+});

@@ -119,4 +119,13 @@ class BlogController extends Controller
       $blog = Blog::find($id);
       return view('blog.blog', ['blogs' => $blog]);
     }
+
+    public function testing(Request $request)
+    {
+      if ($request->isMethod("GET")) {
+        dd("ini adalah method get");
+      } else {
+        dd("ini adalah post");
+      }
+    }
 }

@@ -5,6 +5,7 @@
 @section('content')
     <h1>Tambah content blog</h1>
 
+    {{-- <form action="{{ route('test') }}" method="post"> --}}
     <form action="{{ route('blog.store') }}" method="post">
       {{ csrf_field() }}
       <input type="text" name="title" value="{{ old('title') }}">
