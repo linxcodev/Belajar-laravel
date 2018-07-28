@@ -15,8 +15,12 @@ Route::get('/', function () {
     return redirect()->route('blog.index');
 });
 
+// mengenal resource Controller
+// digunakan untuk mengnrte scr otomatis CRUD method, url, & name
+Route::resource('user', 'UserController');
+
 Route::prefix('blog')->group(function () {
-  Route::match(['get', 'post'], '/testing', 'BlogController@testing')->name('test');
+  Route::match(['get', 'post'], '/testing', 'BlogController@testing')->name('blog.testing');
 
   Route::get('/', 'BlogController@index')->name('blog.index');
   Route::get('/restore', 'BlogController@restore')->name('blog.restore');
