@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return redirect()->route('blog.index');
+    return view('welcome');
 });
 
 // mengenal resource Controller
@@ -39,3 +39,7 @@ Route::prefix('blog')->group(function () {
 
   Route::delete('/{id}', 'BlogController@destroy')->name('blog.destroy');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

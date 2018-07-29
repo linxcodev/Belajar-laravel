@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
 @section('title', 'blog')
 
@@ -16,4 +16,11 @@
 
       <input type="submit" name="save" value="Save">
     </form>
+    <button onclick="goBack()">Go Back</button>
 @endsection
+
+<script>
+  function goBack() {
+      window.history.back();
+  }
+</script>

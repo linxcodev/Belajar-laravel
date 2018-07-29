@@ -1,10 +1,8 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
 @section('title', 'blog')
 
 @section('content')
-    <h1>Selamat datang di blog</h1>
-
     <h2>{{ $blogs->title }}</h2>
     <hr>
     <p>

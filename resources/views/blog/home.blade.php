@@ -1,8 +1,9 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
 @section('title', 'home')
 
 @section('content')
+  <a href="{{ route('home') }}">Home</a>
   <h1>Selamat Datang di home blog</h1>
 
   <button type="button">
