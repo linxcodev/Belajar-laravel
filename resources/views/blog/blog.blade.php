@@ -5,6 +5,9 @@
 @section('content')
     <h2>{{ $blogs->title }}</h2>
     <hr>
+
+    <img src="{{ asset('storage/blogs/' . $blogs->file_img) }}" width="100px">
+
     <p>
       {{ $blogs->description }}
     </p>

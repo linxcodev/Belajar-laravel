@@ -7,6 +7,8 @@ use App\Mail\BlogPosted;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
+
 
 class BlogController extends Controller
 {
@@ -15,7 +17,7 @@ class BlogController extends Controller
     {
       $this->middleware('auth');
     }
-    
+
     public function index()
     {
       // menampilkan semua data
@@ -47,22 +49,30 @@ class BlogController extends Controller
     {
       $request->validate([
         'title' => 'required|min:5|max:20',
-        'description' => 'required|min:8'
+        'description' => 'required|min:8',
+        'file_img' => 'required|image|mimes:png|max:100'
       ]);
+
       // insert cara biasa / tanpa menggunakan model
       // $data = new Blog;
       // $data->title = 'halo kendal';
       // $data->description = 'halo halo kendal halo halo kendal halo halo kendal';
       // $data->save();
 
+      // upload image bisa berdasarkan nama, storage, atau biasa
+      $fileName = time() . '.png';
+      $request->file('file_img')->storeAs('public/blogs', $fileName);
+      // dd('Done');
+
       // insert by mass assigment
       $blog = Blog::create([
         'title' => $request->title,
-        'description' => $request->description
+        'description' => $request->description,
+        'file_img' => $fileName
       ]);
 
       // mengirim email
-      Mail::to('test@emailuser.com')->send(new BlogPosted($blog));
+      // Mail::to('test@emailuser.com')->send(new BlogPosted($blog));
 
       return redirect('blog'); // url
     }
